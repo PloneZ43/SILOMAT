@@ -1,0 +1,142 @@
+/* --- VARIABLES --- */
+:root {
+    --bg-color: #0e0e0e;
+    --card-bg: #1a1a1a;
+    --accent-red: #E50914; /* Rojo Speed Logic */
+    --accent-green: #2ecc71; /* Para aciertos */
+    --text-white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+}
+
+/* --- HUD SUPERIOR --- */
+.hud {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.hud-item { text-align: center; min-width: 100px; }
+.label { font-size: 0.7rem; color: #888; letter-spacing: 2px; display: block; margin-bottom: 5px; }
+.value { font-size: 1.5rem; font-weight: 700; }
+
+/* Barra de Tiempo */
+.timer-container { width: 300px; }
+.timer-bar {
+    width: 100%; height: 8px; background: #333; border-radius: 4px; overflow: hidden; margin-bottom: 5px;
+}
+.timer-fill {
+    height: 100%; width: 100%; background: var(--accent-red);
+    transition: width 1s linear; /* Animación fluida segundo a segundo */
+}
+.time-text { font-size: 0.8rem; color: var(--accent-red); font-weight: 700; }
+
+/* --- ÁREA DE JUEGO --- */
+.game-area {
+    flex-grow: 1;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Tarjeta de Pregunta */
+.question-card {
+    background: var(--card-bg);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    max-width: 800px; width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    margin-bottom: 3rem;
+    transition: transform 0.3s ease;
+}
+
+.category-tag {
+    color: var(--accent-red); font-size: 0.8rem; letter-spacing: 3px; font-weight: 700; margin-bottom: 1.5rem; display: block;
+}
+
+.question-text {
+    font-size: 2rem; font-weight: 600; line-height: 1.4;
+}
+
+/* Botones de Respuesta */
+.answers-grid {
+    display: flex; gap: 2rem; width: 100%; max-width: 600px;
+}
+
+.btn-answer {
+    flex: 1;
+    padding: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem; font-weight: 800; letter-spacing: 1px;
+    border: none; border-radius: 12px;
+    cursor: pointer; transition: 0.2s;
+    text-transform: uppercase;
+    color: white;
+}
+
+.true-btn { background: #1a1a1a; border: 2px solid #fff; }
+.true-btn:hover { background: #fff; color: #000; transform: translateY(-5px); }
+
+.false-btn { background: #1a1a1a; border: 2px solid #fff; }
+.false-btn:hover { background: #fff; color: #000; transform: translateY(-5px); }
+
+/* --- FEEDBACK (Correcto/Incorrecto) --- */
+#feedback-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    pointer-events: none; /* Para no bloquear clicks rápidos si se anima */
+    opacity: 0; transition: opacity 0.3s;
+}
+#feedback-overlay.visible { opacity: 1; }
+
+#feedback-icon { font-size: 5rem; margin-bottom: 1rem; }
+#feedback-text { font-size: 2rem; font-weight: 900; letter-spacing: 2px; }
+
+/* Colores de feedback dinámicos */
+.feedback-correct #feedback-text { color: var(--accent-green); }
+.feedback-wrong #feedback-text { color: var(--accent-red); }
+
+/* --- PANTALLA DE RESULTADOS --- */
+#results-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    z-index: 100;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.5s;
+}
+#results-screen.visible { opacity: 1; pointer-events: auto; }
+
+.results-content { text-align: center; }
+.results-title { font-size: 3rem; margin-bottom: 2rem; color: var(--text-white); }
+.final-score-value { font-size: 6rem; font-weight: 900; color: var(--accent-red); display: block; margin: 1rem 0; }
+.action-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; }
+
+.restart-btn, .menu-btn {
+    padding: 1rem 2rem; border: none; font-weight: 700; cursor: pointer; text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+.restart-btn { background: var(--accent-red); color: white; }
+.menu-btn { background: transparent; border: 1px solid #555; color: #888; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .answers-grid { flex-direction: column; }
+    .question-text { font-size: 1.5rem; }
+    .hud { padding: 1rem; }
+    .timer-container { width: 100px; }
+}

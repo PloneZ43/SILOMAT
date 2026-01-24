@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILOMAT | Jugando Nivel 1</title>
+    <link rel="stylesheet" href="gameone.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="game-bg"></div>
+
+    <header class="hud">
+        <div class="hud-item">
+            <span class="label">PREGUNTA</span>
+            <span class="value" id="question-counter">1 / 5</span>
+        </div>
+        
+        <div class="hud-item timer-container">
+            <div class="timer-bar">
+                <div class="timer-fill" id="timer-fill"></div>
+            </div>
+            <span class="time-text" id="time-text">10s</span>
+        </div>
+
+        <div class="hud-item">
+            <span class="label">PUNTAJE</span>
+            <span class="value" id="score-display">0</span>
+        </div>
+    </header>
+
+    <main class="game-area">
+        
+        <div class="question-card" id="question-card">
+            <div class="category-tag">FUNDAMENTOS</div>
+            <h2 class="question-text" id="question-text">
+                Cargando pregunta...
+            </h2>
+        </div>
+
+        <div class="answers-grid">
+            <button class="btn-answer true-btn" onclick="selectAnswer(true)">
+                VERDADERO
+            </button>
+            <button class="btn-answer false-btn" onclick="selectAnswer(false)">
+                FALSO
+            </button>
+        </div>
+
+        <div id="feedback-overlay" class="feedback-hidden">
+            <span id="feedback-icon">✅</span>
+            <span id="feedback-text">¡CORRECTO!</span>
+        </div>
+
+    </main>
+
+    <section id="results-screen" class="hidden">
+        <div class="results-content">
+            <h1 class="results-title">MÓDULO COMPLETADO</h1>
+            
+            <div class="score-box">
+                <span class="final-score-label">PUNTAJE FINAL</span>
+                <span class="final-score-value" id="final-score">0</span>
+                <p class="final-message" id="final-message">Buen trabajo</p>
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="location.reload()" class="restart-btn">REINTENTAR</button>
+                <a href="menu.html" class="menu-btn">VOLVER AL MENÚ</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="gameone.js"></script>
+</body>
+</html>

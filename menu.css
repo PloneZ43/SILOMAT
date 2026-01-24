@@ -1,0 +1,158 @@
+/* --- VARIABLES GLOBALES --- */
+:root {
+    --bg-dark: #0e0e0e;      /* Negro mate */
+    --bg-card: #141414;      /* Gris muy oscuro para tarjetas */
+    --accent-red: #c92a2a;   /* Rojo intenso */
+    --text-white: #ffffff;
+    --text-gray: #888888;
+}
+
+/* --- RESET BÁSICO --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    /* Fondo radial sutil tipo "foco" desde arriba */
+    background-image: radial-gradient(circle at 50% -10%, #2a2a2a, #000000);
+    color: var(--text-white);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+}
+
+/* --- ESTRELLAS (FONDO) --- */
+#star-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--duration) infinite ease-in-out; }
+@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 0.7; transform: scale(1.2); } }
+
+/* --- HEADER / NAVEGACIÓN --- */
+.top-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2.5rem 4rem; z-index: 10;
+}
+
+.logo {
+    text-decoration: none; color: white; font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;
+    border-left: 3px solid var(--accent-red); padding-left: 15px;
+}
+
+.system-status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.7rem; letter-spacing: 1px; color: var(--text-gray);
+}
+.status-value { color: var(--text-white); font-weight: 700; }
+.status-dot {
+    width: 6px; height: 6px; background-color: #0f0; border-radius: 50%;
+    box-shadow: 0 0 8px #0f0;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.menu-container {
+    flex-grow: 1;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 10; padding-bottom: 2rem;
+}
+
+.menu-header { text-align: center; margin-bottom: 4rem; }
+
+.subtitle {
+    color: var(--accent-red); font-size: 0.75rem; letter-spacing: 4px;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 10px;
+}
+
+.title {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 0;
+    text-transform: uppercase; line-height: 1;
+}
+
+/* --- GRID DE TARJETAS --- */
+.cards-grid {
+    display: flex; gap: 2.5rem;
+    perspective: 1000px;
+}
+
+/* --- ESTILO DE TARJETA INDIVIDUAL --- */
+.game-card {
+    position: relative;
+    width: 300px; height: 400px;
+    background: var(--bg-card);
+    text-decoration: none;
+    color: white;
+    /* Borde muy sutil inicial */
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; flex-direction: column;
+}
+
+/* Capa de fondo para efecto hover */
+.card-bg {
+    position: absolute; inset: 0; opacity: 0; transition: 0.4s;
+    background: radial-gradient(circle at center, rgba(201, 42, 42, 0.15), transparent 70%);
+}
+
+.card-content {
+    position: relative; z-index: 2; height: 100%; padding: 2.5rem;
+    display: flex; flex-direction: column;
+}
+
+/* --- ICONOS SVG --- */
+.icon-box {
+    width: 48px; height: 48px; margin-bottom: auto;
+    color: var(--text-gray); transition: 0.4s;
+}
+.icon-box svg { width: 100%; height: 100%; filter: drop-shadow(0 0 0 transparent); transition: 0.4s; }
+
+/* Textos de la tarjeta */
+.card-title {
+    font-size: 1.8rem; font-weight: 800; line-height: 0.95;
+    margin-bottom: 1rem; text-transform: uppercase; letter-spacing: -1px;
+}
+.card-desc {
+    font-size: 0.85rem; color: var(--text-gray); font-weight: 500;
+    margin-bottom: 2.5rem; line-height: 1.4;
+}
+
+/* Footer de la tarjeta */
+.card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;
+    transition: 0.3s;
+}
+.btn-text { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; }
+.arrow-icon { font-size: 1.2rem; transition: transform 0.3s; }
+
+/* --- INTERACCIÓN / HOVER --- */
+.game-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-red); /* Borde rojo al pasar mouse */
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8);
+}
+
+.game-card:hover .card-bg { opacity: 1; }
+
+.game-card:hover .icon-box {
+    color: var(--accent-red);
+    transform: scale(1.1);
+}
+.game-card:hover .icon-box svg {
+    filter: drop-shadow(0 0 10px rgba(201, 42, 42, 0.6));
+}
+
+.game-card:hover .card-footer { border-top-color: var(--accent-red); }
+.game-card:hover .arrow-icon { transform: translateX(8px); color: var(--accent-red); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .cards-grid { gap: 1.5rem; }
+    .game-card { width: 260px; height: 360px; }
+}
+
+@media (max-width: 900px) {
+    .top-nav { padding: 1.5rem 2rem; }
+    .cards-grid { flex-direction: column; width: 100%; padding: 0 2rem; }
+    .game-card { width: 100%; height: 200px; flex-direction: row; }
+    .card-content { justify-content: center; padding: 2rem; }
+    .icon-box { margin-bottom: 1rem; width: 40px; height: 40px; }
+    .title { font-size: 2.5rem; }
+}
