@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILOMAT | El Constructor</title>
+    <link rel="stylesheet" href="game2-play.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="game-bg"></div>
+
+    <header class="hud">
+        <div class="hud-item">
+            <span class="label">NIVEL</span>
+            <span class="value" id="level-counter">01 / 05</span>
+        </div>
+        
+        <div class="timer-container">
+            <div class="timer-bar">
+                <div class="timer-fill" id="timer-fill"></div>
+            </div>
+            <span class="time-text" id="time-text">20s</span>
+        </div>
+
+        <div class="hud-item right">
+            <span class="label">PUNTAJE</span>
+            <span class="value" id="score-display">0</span>
+        </div>
+    </header>
+
+    <main class="game-area">
+        
+        <section class="blueprint-container">
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+
+            <div class="blueprint-header">ESTRUCTURA LÓGICA // PLANO 01</div>
+            
+            <div class="syllogism-stack" id="syllogism-stack">
+                </div>
+        </section>
+
+        <section class="parts-container">
+            <span class="parts-label">SELECCIONA EL COMPONENTE FALTANTE</span>
+            <div class="parts-grid" id="options-container">
+                </div>
+        </section>
+
+    </main>
+
+    <div id="feedback-overlay" class="feedback-hidden">
+        <div class="feedback-box">
+            <div class="feedback-icon-box" id="feedback-icon-box"></div>
+            <h2 id="feedback-title">ESTADO</h2>
+            <p id="feedback-explanation">Explicación del resultado...</p>
+            <button class="btn-continue" onclick="nextLevel()">SIGUIENTE FASE →</button>
+        </div>
+    </div>
+
+    <section id="results-screen" class="hidden">
+        <div class="results-content">
+            <span class="results-subtitle">PROYECTO TERMINADO</span>
+            <h1 class="results-title">RESULTADOS</h1>
+            
+            <div class="score-box">
+                <span class="final-score-label">PUNTAJE FINAL</span>
+                <span class="final-score-value" id="final-score">0</span>
+            </div>
+            
+            <p class="final-message" id="final-message">Evaluando estructura...</p>
+
+            <div class="action-buttons">
+                <button onclick="location.reload()" class="restart-btn">REINTENTAR</button>
+                <a href="menu.html" class="menu-btn">VOLVER AL MENÚ</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="game2-play.js"></script>
+</body>
+</html>

@@ -5,21 +5,25 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Encima del fondo degradado, pero detrás del contenido */
-    pointer-events: none; /* CLAVE: Permite dar clicks a través del canvas */
-    opacity: 0.6; /* Sutil */
+    z-index: 1; 
+    pointer-events: none; 
+    opacity: 0.6; 
 }
 
-/* Ajustamos el z-index de los demás elementos para que queden ENCIMA de las partículas */
+/* Ajustamos el z-index */
 .top-nav, .hero-container {
     position: relative;
     z-index: 10;
 }
-/* --- VARIABLES DEL TEMA --- */
+
+/* --- VARIABLES DEL TEMA (MODIFICADO A AZUL) --- */
 :root {
-    --bg-dark: #0e0e0e;      /* Negro mate suave */
-    --bg-light: #1a1a1a;     /* Gris muy oscuro para el gradiente */
-    --accent-red: #026d06;   /* Rojo sangre elegante */
+    --bg-dark: #0e0e0e;      
+    --bg-light: #151b25;     /* Un tono gris azulado muy oscuro */
+    
+    /* EL CAMBIO IMPORTANTE: Azul Ingeniería */
+    --accent-color: #0984e3; 
+    
     --text-white: #ffffff;
     --text-gray: #888888;
 }
@@ -28,6 +32,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+    /* Gradiente ligeramente azulado */
     background: radial-gradient(circle at 30% 50%, var(--bg-light), var(--bg-dark));
     color: var(--text-white);
     font-family: 'Montserrat', sans-serif;
@@ -36,7 +41,7 @@ body {
     display: flex; flex-direction: column;
 }
 
-/* --- NAVEGACIÓN SUPERIOR --- */
+/* --- NAVEGACIÓN SUPERIOR (ESTRUCTURA ORIGINAL) --- */
 .top-nav {
     position: absolute; top: 0; left: 0; width: 100%;
     padding: 2.5rem 4rem;
@@ -47,7 +52,8 @@ body {
 .logo {
     text-decoration: none; font-weight: 900; font-size: 1.2rem;
     color: var(--text-white); letter-spacing: 2px;
-    border-left: 3px solid var(--accent-red); padding-left: 10px; /* Detalle logo */
+    /* Borde Azul */
+    border-left: 3px solid var(--accent-color); padding-left: 10px; 
 }
 
 .nav-links span {
@@ -58,7 +64,7 @@ body {
 /* --- LAYOUT PRINCIPAL --- */
 .hero-container {
     display: grid;
-    grid-template-columns: 45% 55%; /* Más espacio para la imagen */
+    grid-template-columns: 45% 55%; 
     height: 100%; width: 100%;
     padding: 0 4rem;
 }
@@ -76,7 +82,7 @@ body {
 
 .hero-title {
     font-size: 5.5rem; line-height: 0.95; font-weight: 900;
-    margin-bottom: 2rem; letter-spacing: -2px; /* Apretado para impacto */
+    margin-bottom: 2rem; letter-spacing: -2px; 
 }
 
 .hero-description {
@@ -84,7 +90,7 @@ body {
     max-width: 400px; margin-bottom: 4rem; font-weight: 300;
 }
 
-/* BOTÓN MINIMALISTA (Estilo Referencia) */
+/* BOTÓN MINIMALISTA */
 .minimal-btn-wrapper {
     display: flex; align-items: center; text-decoration: none;
     cursor: pointer; width: fit-content;
@@ -107,12 +113,12 @@ body {
     letter-spacing: 1px;
 }
 
-/* Efecto Hover del Botón */
+/* Efecto Hover del Botón (AZUL) */
 .minimal-btn-wrapper:hover .btn-circle {
-    border-color: var(--accent-red);
-    background: var(--accent-red);
+    border-color: var(--accent-color);
+    background: var(--accent-color);
     transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(201, 42, 42, 0.4);
+    box-shadow: 0 0 30px rgba(9, 132, 227, 0.4);
 }
 .minimal-btn-wrapper:hover .arrow { transform: translateX(5px); }
 
@@ -125,7 +131,7 @@ body {
 .progress-line {
     width: 100px; height: 2px; background: rgba(255,255,255,0.1); position: relative;
 }
-.progress-line::after { /* El progreso real */
+.progress-line::after { 
     content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 30%; background: var(--text-white);
 }
 
@@ -135,40 +141,41 @@ body {
     display: flex; align-items: center; justify-content: center;
 }
 
-/* 1. EL PLANETA ROJO (FONDO) */
+/* 1. EL PLANETA (AHORA AZUL) */
+/* Nota: Mantengo la clase .red-planet por compatibilidad con tu HTML, pero el color es Azul */
 .red-planet {
     position: absolute;
-    width: 65vh; height: 65vh; /* Tamaño relativo a la altura */
-    background: var(--accent-red);
+    width: 65vh; height: 65vh; 
+    background: var(--accent-color); /* Azul */
     border-radius: 50%;
-    right: 10%; /* Movido a la derecha */
+    right: 10%; 
     top: 50%; transform: translateY(-50%);
-    box-shadow: 0 0 100px rgba(201, 42, 42, 0.1); /* Resplandor muy sutil */
-    z-index: 1; /* Detrás de la estatua */
+    box-shadow: 0 0 100px rgba(9, 132, 227, 0.15); /* Resplandor azul */
+    z-index: 1; 
 }
 
-/* 2. ESTATUA (PRIMER PLANO) */
+/* 2. ESTATUA */
 .hero-statue {
     position: absolute;
-    height: 110vh; /* ¡Más alto que la pantalla para cortar bordes! */
+    height: 110vh; 
     width: auto;
     right: 0;
-    top: 50%; transform: translateY(-45%); /* Ajuste fino de posición */
-    z-index: 2; /* Delante del planeta */
+    top: 50%; transform: translateY(-45%); 
+    z-index: 2; 
     object-fit: cover;
-    /* Un poco de sombra para separarlo del círculo */
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
-    pointer-events: none; /* Para que no moleste al clickear */
+    pointer-events: none; 
 }
 
-/* 3. ORBE PEQUEÑO (DECORACIÓN) */
+/* 3. ORBE PEQUEÑO (CYAN/AZUL) */
 .small-orb {
     position: absolute;
     width: 80px; height: 80px;
-    background: linear-gradient(to bottom, #03ff46, #01a917);
+    /* Nuevo gradiente Cyan/Azul */
+    background: linear-gradient(to bottom, #00d2d3, #0984e3);
     border-radius: 50%;
     bottom: 10%; left: 15%;
-    z-index: 3; /* Encima de todo */
+    z-index: 3; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
@@ -181,12 +188,12 @@ body {
 
 @media (max-width: 768px) {
     .top-nav { padding: 1.5rem; }
-    .nav-links { display: none; } /* Ocultar links en móvil */
+    .nav-links { display: none; } 
     .hero-container { grid-template-columns: 1fr; padding: 0 2rem; }
     
     .visual-side {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        opacity: 0.3; z-index: 0; /* Imagen de fondo atenuada */
+        opacity: 0.3; z-index: 0; 
     }
     .red-planet { right: -20%; }
     

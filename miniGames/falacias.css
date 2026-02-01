@@ -1,4 +1,5 @@
-/* --- CANVAS DE FONDO (Detective Lógico: copia de estilo de Speed Logic) --- */
+/* === CANVAS DE FONDO === */
+/* Lienzo fijo que cubre toda la pantalla para animaciones de partículas */
 #depth-canvas {
     position: fixed;
     top: 0;
@@ -10,18 +11,25 @@
     opacity: 0.6;
 }
 
+/* Asegurar que navegación y contenedor principal estén sobre el canvas */
 .top-nav, .hero-container { position: relative; z-index: 10; }
 
+/* === VARIABLES DE COLOR === */
+/* Paleta de colores del tema oscuro con acentos rojos/amarillos */
 :root {
     --bg-dark: #0e0e0e;
     --bg-light: #1a1a1a;
-    --accent-red: #c92a2a;
+    --accent-red: #ffda1e;
     --text-white: #ffffff;
     --text-gray: #888888;
 }
 
+/* === RESET GLOBAL === */
+/* Eliminar márgenes y paddings por defecto, usar border-box */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* === ESTILOS DEL BODY === */
+/* Fondo con gradiente radial, ocupar toda la altura sin desplazamiento */
 body {
     background: radial-gradient(circle at 30% 50%, var(--bg-light), var(--bg-dark));
     color: var(--text-white);
@@ -29,42 +37,91 @@ body {
     height: 100vh; overflow: hidden; display: flex; flex-direction: column;
 }
 
+/* === NAVEGACIÓN SUPERIOR === */
+/* Barra de navegación fija en la parte superior */
 .top-nav {
     position: absolute; top: 0; left: 0; width: 100%;
     padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center;
     z-index: 100;
 }
 
+/* Logo con línea roja distintiva */
 .logo { text-decoration: none; font-weight: 900; font-size: 1.2rem; color: var(--text-white); letter-spacing: 2px; border-left: 3px solid var(--accent-red); padding-left: 10px; }
 
+/* Enlaces de navegación en mayúsculas con espaciado */
 .nav-links span { margin-left: 3rem; font-size: 0.7rem; letter-spacing: 1px; color: var(--text-white); text-transform: uppercase; opacity: 0.6; }
 
+/* === CONTENEDOR PRINCIPAL === */
+/* Layout en dos columnas: contenido (45%) y visual (55%) */
 .hero-container { display: grid; grid-template-columns: 45% 55%; height: 100%; width: 100%; padding: 0 4rem; }
 
+/* Lado izquierdo con contenido de texto */
 .content-side { display: flex; flex-direction: column; justify-content: center; padding-right: 2rem; z-index: 10; }
 
+/* Pequeño texto descriptivo arriba del título */
 .kicker { color: var(--text-gray); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; font-weight: 600; }
 
+/* Título principal grande y bold */
 .hero-title { font-size: 5.5rem; line-height: 0.95; font-weight: 900; margin-bottom: 2rem; letter-spacing: -2px; }
 
+/* Descripción de texto con ancho máximo */
 .hero-description { color: var(--text-gray); font-size: 1rem; line-height: 1.6; max-width: 400px; margin-bottom: 4rem; font-weight: 300; }
 
+/* Contenedor flexible para botón con círculo y etiqueta */
 .minimal-btn-wrapper { display: flex; align-items: center; text-decoration: none; cursor: pointer; width: fit-content; }
 
+/* Círculo del botón con borde y animación */
 .btn-circle { width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); position: relative; overflow: hidden; }
+
+/* Icono de flecha dentro del botón */
 .arrow { font-size: 1.2rem; color: var(--text-white); transition: 0.3s; }
+
+/* Etiqueta del botón */
 .btn-label { font-size: 1rem; font-weight: 500; color: var(--text-white); letter-spacing: 1px; }
-.minimal-btn-wrapper:hover .btn-circle { border-color: var(--accent-red); background: var(--accent-red); transform: scale(1.1); box-shadow: 0 0 30px rgba(201, 42, 42, 0.4); }
+
+/* Efectos de hover del botón (rojo, escala y sombra) */
+.minimal-btn-wrapper:hover .btn-circle { border-color: var(--accent-red); background: var(--accent-red); transform: scale(1.1); box-shadow: 0 0 30px rgb(255, 196, 0); }
+
+/* Movimiento de la flecha en hover */
 .minimal-btn-wrapper:hover .arrow { transform: translateX(5px); }
 
+/* === INDICADOR DE PROGRESO === */
+/* Barra de progreso en la esquina inferior izquierda */
 .bottom-progress { position: absolute; bottom: 3rem; left: 4rem; display: flex; align-items: center; gap: 15px; font-size: 0.8rem; font-weight: 600; color: var(--text-white); }
+
+/* Línea de progreso con fondo subtil */
 .progress-line { width: 100px; height: 2px; background: rgba(255,255,255,0.1); position: relative; }
+
+/* Relleno del progreso (30%) */
 .progress-line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 30%; background: var(--text-white); }
 
+/* === ELEMENTOS VISUALES DEL LADO DERECHO === */
+/* Contenedor del lado visual con posicionamiento relativo */
 .visual-side { position: relative; display: flex; align-items: center; justify-content: center; }
-.red-planet { position: absolute; width: 65vh; height: 65vh; background: var(--accent-red); border-radius: 50%; right: 10%; top: 50%; transform: translateY(-50%); box-shadow: 0 0 100px rgba(201, 42, 42, 0.1); z-index: 1; }
-.hero-statue { position: absolute; height: 110vh; width: auto; right: 0; top: 50%; transform: translateY(-45%); z-index: 2; object-fit: cover; filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5)); pointer-events: none; }
-.small-orb { position: absolute; width: 80px; height: 80px; background: linear-gradient(to bottom, #ff5e5e, #a00000); border-radius: 50%; bottom: 10%; left: 15%; z-index: 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-@media (max-width: 1024px) { .hero-title { font-size: 4rem; } .hero-statue { height: 80vh; right: -50px; } .red-planet { width: 50vh; height: 50vh; right: 5%; } }
-@media (max-width: 768px) { .top-nav { padding: 1.5rem; } .nav-links { display: none; } .hero-container { grid-template-columns: 1fr; padding: 0 2rem; } .visual-side { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.3; z-index: 0; } .red-planet { right: -20%; } .content-side { height: 100vh; justify-content: flex-end; padding-bottom: 6rem; } .hero-title { font-size: 3.5rem; } }
+/* Círculo rojo de fondo grande */
+.red-planet { position: absolute; width: 65vh; height: 65vh; background: var(--accent-red); border-radius: 50%; right: 10%; top: 50%; transform: translateY(-50%); box-shadow: 0 0 100px rgba(201, 42, 42, 0.1); z-index: 1; }
+
+/* Imagen de estatua con efecto de sombra */
+.hero-statue { position: absolute; height: 110vh; width: auto; right: 0; top: 50%; transform: translateY(-45%); z-index: 2; object-fit: cover; filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5)); pointer-events: none; }
+
+/* Pequeña esfera roja decorativa */
+.small-orb { position: absolute; width: 80px; height: 80px; background: linear-gradient(to bottom, #f8ff23, #cdb200); border-radius: 50%; bottom: 10%; left: 15%; z-index: 3; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+/* === MEDIA QUERIES - TABLET === */
+@media (max-width: 1024px) { 
+    .hero-title { font-size: 4rem; } 
+    .hero-statue { height: 80vh; right: -50px; } 
+    .red-planet { width: 50vh; height: 50vh; right: 5%; } 
+}
+
+/* === MEDIA QUERIES - MÓVIL === */
+@media (max-width: 768px) { 
+    .top-nav { padding: 1.5rem; } 
+    .nav-links { display: none; } 
+    .hero-container { grid-template-columns: 1fr; padding: 0 2rem; } 
+    .visual-side { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.3; z-index: 0; } 
+    .red-planet { right: -20%; } 
+    .content-side { height: 100vh; justify-content: flex-end; padding-bottom: 6rem; } 
+    .hero-title { font-size: 3.5rem; } 
+}

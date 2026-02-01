@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Iniciando...</title>
+    <link rel="stylesheet" href="intro.css">
+</head>
+<body>
+
+    <div id="boot-screen">
+        <div class="console-text">
+            <p>> INITIALIZING SILOMAT KERNEL...</p>
+            <p>> CHECKING MEMORY... OK</p>
+            <p>> LOADING ASSETS... OK</p>
+            <p>> ESTABLISHING SECURE CONNECTION...</p>
+            <p id="loading-dots">> WAITING FOR USER_</p>
+        </div>
+        <div class="loader-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <div id="bsod-screen" class="hidden">
+        <div class="bsod-content">
+            <span class="sad-face">:(</span>
+            <h1 class="bsod-title">Your device ran into a problem and needs to restart.</h1>
+            <p class="bsod-desc">We're just collecting some error info, and then we'll restart for you.</p>
+            <p class="bsod-percent">0% complete</p>
+            
+            <div class="bsod-footer">
+                <div class="qr-placeholder">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR">
+                </div>
+                <div class="stop-code">
+                    <p>For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</p>
+                    <p>If you call a support person, give them this info:</p>
+                    <p>Stop code: CRITICAL_PROCESS_DIED</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="intro.js"></script>
+</body>
+</html>

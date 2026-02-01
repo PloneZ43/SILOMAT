@@ -1,0 +1,72 @@
+/* --- RESET --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; /* Fondo inicial negro */
+    cursor: none; /* Ocultar mouse para más realismo */
+}
+
+/* --- FASE 1: PANTALLA DE CARGA (Boot) --- */
+#boot-screen {
+    background-color: black;
+    color: #0f0; /* Verde hacker */
+    height: 100%;
+    padding: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.console-text p { margin-bottom: 5px; font-size: 1.2rem; }
+
+.loader-bar {
+    width: 100%; height: 5px; background: #333; margin-top: 20px;
+}
+.progress {
+    height: 100%; background: #0f0; width: 0%;
+    transition: width 10s linear; /* Dura los 10 segundos que pediste */
+}
+
+/* --- FASE 2: PANTALLA AZUL (BSOD) --- */
+.hidden { display: none !important; }
+
+#bsod-screen {
+    background-color: #0078D7; /* El azul exacto de Windows */
+    color: white;
+    height: 100%;
+    padding: 10% 15%;
+    display: flex; flex-direction: column; justify-content: center;
+}
+
+.sad-face { font-size: 8rem; margin-bottom: 2rem; display: block; }
+.bsod-title { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; line-height: 1.3; }
+.bsod-desc { font-size: 1.2rem; margin-bottom: 1rem; }
+.bsod-percent { font-size: 1.2rem; margin-bottom: 3rem; }
+
+.bsod-footer { display: flex; align-items: center; gap: 20px; }
+.qr-placeholder img { width: 100px; height: 100px; }
+.stop-code p { font-size: 0.8rem; line-height: 1.5; }
+
+/* --- EFECTO GLITCH (Para el final) --- */
+.glitch-mode {
+    animation: shake 0.1s infinite;
+    filter: invert(1); /* Invierte colores violentamente */
+}
+
+.glitch-mode #bsod-screen {
+    background-color: red; /* Cambia a rojo momentáneamente */
+    transform: scale(1.02);
+}
+
+@keyframes shake {
+    0% { transform: translate(2px, 2px) skewX(20deg); }
+    20% { transform: translate(-2px, -2px) skewX(-20deg); }
+    40% { transform: translate(-2px, 2px) skewX(10deg); filter: hue-rotate(90deg); }
+    60% { transform: translate(2px, -2px) skewX(-5deg); }
+    80% { transform: translate(2px, 2px) skewX(50deg); }
+    100% { transform: translate(-2px, -2px) skewX(0deg); }
+}

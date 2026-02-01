@@ -1,0 +1,206 @@
+/* --- VARIABLES (Tema Azul - Ingeniería) --- */
+:root {
+    --bg-dark: #0e0e0e;
+    --card-bg: #1a1a1a;
+    
+    /* TU AZUL ELEGIDO */
+    --accent-theme: #0984e3; 
+    
+    --accent-red: #E50914;   /* Error */
+    --accent-green: #2ecc71; /* Acierto */
+    --text-white: #ffffff;
+    --text-gray: #888888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    /* Fondo radial azulado muy oscuro */
+    background-image: radial-gradient(circle at center, #101a25 0%, #000000 100%);
+    color: var(--text-white);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+}
+
+/* --- HUD SUPERIOR --- */
+.hud {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 3rem;
+    width: 100%; z-index: 10;
+    border-bottom: 1px solid rgba(9, 132, 227, 0.2); 
+    background: rgba(0,0,0,0.4);
+}
+
+.hud-item { text-align: center; min-width: 100px; }
+.label { font-size: 0.65rem; color: var(--text-gray); letter-spacing: 2px; display: block; margin-bottom: 5px; font-weight: 700; }
+.value { font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; }
+.right { text-align: right; }
+
+/* Barra de Tiempo */
+.timer-container { width: 300px; }
+.timer-bar {
+    width: 100%; height: 6px; background: rgba(255,255,255,0.1);
+    border-radius: 4px; overflow: hidden; margin-bottom: 5px;
+}
+.timer-fill {
+    height: 100%; width: 100%;
+    /* Gradiente Azul */
+    background: linear-gradient(90deg, #00d2d3, var(--accent-theme)); 
+    transition: width 1s linear;
+    box-shadow: 0 0 10px rgba(9, 132, 227, 0.4);
+}
+.time-text { font-size: 0.8rem; color: var(--accent-theme); font-weight: 700; }
+
+/* --- ÁREA DE JUEGO --- */
+.game-area {
+    flex-grow: 1; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center;
+    padding: 2rem; gap: 3rem; position: relative;
+}
+
+/* BLUEPRINT (Contenedor del Silogismo) */
+.blueprint-container {
+    background: rgba(20, 20, 20, 0.6);
+    /* Borde estilo plano técnico */
+    border: 1px solid rgba(9, 132, 227, 0.3); 
+    padding: 2.5rem;
+    border-radius: 2px;
+    width: 100%; max-width: 750px;
+    display: flex; flex-direction: column; align-items: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+/* Esquinas decorativas "Tech" */
+.corner { position: absolute; width: 15px; height: 15px; border-color: var(--accent-theme); border-style: solid; }
+.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.blueprint-header {
+    font-size: 0.7rem; letter-spacing: 4px; color: var(--accent-theme); 
+    margin-bottom: 2rem; text-transform: uppercase; font-weight: 700; opacity: 0.8;
+}
+
+.syllogism-stack {
+    display: flex; flex-direction: column; gap: 15px; width: 100%;
+}
+
+/* BLOQUES DE LÓGICA */
+.logic-block {
+    padding: 1.5rem 2rem;
+    background: #202020;
+    border-left: 4px solid #444;
+    color: #ddd;
+    font-weight: 500; font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.logic-block.conclusion {
+    margin-top: 15px;
+    background: #151515;
+    border-left-color: var(--accent-theme); /* Acento Azul */
+    font-weight: 700; color: white;
+}
+.logic-block.conclusion::before {
+    content: ''; position: absolute; top: -15px; left: 0;
+    width: 100%; height: 2px; background: #444;
+}
+
+/* ESPACIO VACÍO (Target) */
+.logic-block.empty-slot {
+    background: rgba(9, 132, 227, 0.05);
+    border: 2px dashed var(--accent-theme);
+    border-left: none;
+    color: var(--accent-theme);
+    display: flex; justify-content: center; align-items: center;
+    min-height: 80px;
+    font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+
+/* --- ZONA DE OPCIONES --- */
+.parts-container { width: 100%; max-width: 800px; text-align: center; }
+.parts-label { display: block; margin-bottom: 1.5rem; color: #666; font-size: 0.75rem; letter-spacing: 3px; font-weight: 700; }
+
+.parts-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+}
+
+.option-card {
+    background: #252525;
+    padding: 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 1rem; line-height: 1.5; color: #ccc;
+    position: relative; overflow: hidden;
+}
+
+.option-card:hover {
+    background: #2a2a2a; border-color: var(--accent-theme);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(9, 132, 227, 0.2);
+    color: white;
+}
+
+/* --- OVERLAY DE FEEDBACK --- */
+#feedback-overlay {
+    position: fixed; inset: 0;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
+    z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+#feedback-overlay.visible { opacity: 1; pointer-events: auto; }
+
+.feedback-box {
+    text-align: center; max-width: 500px; padding: 3rem;
+    border: 1px solid rgba(255,255,255,0.1); background: #111;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    transform: scale(0.9); transition: transform 0.3s;
+}
+#feedback-overlay.visible .feedback-box { transform: scale(1); }
+
+/* Icono SVG Dinámico */
+.feedback-icon-box { width: 60px; height: 60px; margin: 0 auto 1.5rem auto; }
+.feedback-icon-box svg { width: 100%; height: 100%; }
+
+.is-correct #feedback-title, .is-correct .feedback-icon-box { color: var(--accent-green); }
+.is-wrong #feedback-title, .is-wrong .feedback-icon-box { color: var(--accent-red); }
+
+#feedback-title { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase; }
+#feedback-explanation { font-size: 1rem; color: #bbb; line-height: 1.6; margin-bottom: 2rem; }
+
+.btn-continue {
+    background: white; color: black; border: none; padding: 1rem 2rem;
+    font-weight: 800; cursor: pointer; letter-spacing: 1px; transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.btn-continue:hover { transform: scale(1.05); }
+
+/* --- PANTALLA DE RESULTADOS --- */
+#results-screen {
+    position: fixed; inset: 0; background: var(--bg-dark);
+    z-index: 200; display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.5s;
+}
+#results-screen.visible { opacity: 1; pointer-events: auto; }
+
+.results-content { text-align: center; }
+.results-subtitle { color: var(--text-gray); letter-spacing: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+.results-title { font-size: 3.5rem; margin-bottom: 2rem; color: white; font-weight: 900; }
+.final-score-value { font-size: 6rem; font-weight: 900; color: var(--accent-theme); display: block; margin: 10px 0; }
+
+.action-buttons { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; }
+.restart-btn { background: var(--accent-theme); color: white; border: none; padding: 1.2rem 2.5rem; font-weight: 800; cursor: pointer; }
+.restart-btn:hover { box-shadow: 0 0 30px rgba(9, 132, 227, 0.4); }
+.menu-btn { border: 1px solid rgba(255,255,255,0.3); color: white; padding: 1.2rem 2.5rem; text-decoration: none; font-weight: 700; }
+.menu-btn:hover { border-color: white; background: rgba(255,255,255,0.1); }
