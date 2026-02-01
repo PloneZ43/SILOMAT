@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILOMAT | Detective Lógico — Juego</title>
+    <link rel="stylesheet" href="falacias-game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="game-bg"></div>
+
+    <header class="hud">
+        <div class="hud-group">
+            <span class="hud-label">CASO</span>
+            <span class="hud-value" id="question-counter">01 / 20</span>
+        </div>
+        
+        <div class="timer-wrapper">
+            <div class="timer-track">
+                <div class="timer-fill" id="timer-fill"></div>
+            </div>
+            <span class="timer-text" id="time-text">10s</span>
+        </div>
+
+        <div class="hud-group right">
+            <span class="hud-label">PUNTAJE</span>
+            <span class="hud-value" id="score-display">0</span>
+        </div>
+    </header>
+
+    <main class="game-area">
+        
+        <div class="card-container">
+            <div class="question-card" id="question-card">
+                <div class="card-header">
+                    <span class="category-badge">DETECCIÓN DE FALACIAS</span>
+                </div>
+                <h2 class="question-text" id="question-text">Cargando...</h2>
+            </div>
+        </div>
+
+        <div class="actions-grid">
+            <button class="btn-option" onclick="selectAnswer(0)"><span class="btn-icon">A</span></button>
+            <button class="btn-option" onclick="selectAnswer(1)"><span class="btn-icon">B</span></button>
+            <button class="btn-option" onclick="selectAnswer(2)"><span class="btn-icon">C</span></button>
+            <button class="btn-option" onclick="selectAnswer(3)"><span class="btn-icon">D</span></button>
+        </div>
+
+    </main>
+
+    <div id="feedback-overlay" class="feedback-hidden">
+        <div class="feedback-content">
+            <div class="feedback-icon-box" id="feedback-icon-box"></div>
+            <h2 id="feedback-title">¡CORRECTO!</h2>
+            <p id="feedback-explanation">Aquí va la explicación.</p>
+            <button class="btn-next" onclick="nextQuestion()">CONTINUAR →</button>
+        </div>
+    </div>
+
+    <section id="results-screen" class="hidden">
+        <div class="results-modal">
+            <div class="results-header">
+                <span class="results-subtitle">MÓDULO FINALIZADO</span>
+                <h1 class="results-title">RESULTADOS</h1>
+            </div>
+            
+            <div class="score-circle">
+                <span class="score-label">PUNTAJE</span>
+                <span class="final-score-value" id="final-score">0</span>
+            </div>
+
+            <p class="final-message" id="final-message">Evaluando rendimiento...</p>
+
+            <div class="results-actions">
+                <button onclick="location.reload()" class="btn-restart">REINTENTAR</button>
+                <a href="../menu.html" class="btn-menu">MENÚ PRINCIPAL</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="falacias-game.js"></script>
+</body>
+</html>
