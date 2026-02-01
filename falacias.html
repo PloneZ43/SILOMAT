@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SILOMAT | Detective Lógico</title>
+    <link rel="stylesheet" href="falacias.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Menú / introducción del minijuego Detective Lógico -->
+    <nav class="top-nav">
+        <a href="../menu.html" class="logo">SILOMAT</a>
+        <div class="nav-links">
+            <span>MÓDULO 02</span>
+            <span>DETECTIVE</span>
+            <span>LÓGICO</span>
+        </div>
+    </nav>
+
+    <main class="hero-container">
+        
+        <div class="content-side">
+            <span class="kicker">DETECCIÓN DE FALACIAS</span>
+            
+            <h1 class="hero-title">
+                DETECTIVE<br>LÓGICO
+            </h1>
+            
+            <p class="hero-description">
+                Conviértete en un experto en detectar razonamientos engañosos. Analiza argumentos,
+                encuentra la falacia y gana puntos por precisión y rapidez.
+            </p>
+
+            <a href="falacias-game.html" class="minimal-btn-wrapper">
+                <div class="btn-circle">
+                    <span class="arrow">→</span>
+                </div>
+                <span class="btn-label">INICIAR DESAFÍO</span>
+            </a>
+
+            <div class="bottom-progress">
+                <span>01</span>
+                <div class="progress-line"></div>
+                <span>03</span>
+            </div>
+        </div>
+
+        <div class="visual-side">
+            <div class="red-planet"></div>
+            
+            <div class="small-orb"></div>
+
+            <img src="./hoysi.png" class="hero-statue" alt="Estatua Lógica">
+        </div>
+
+    </main>
+
+    <canvas id="depth-canvas"></canvas>
+
+    <script src="falacias.js"></script>
+
+</body>
+</html>
